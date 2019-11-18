@@ -6,10 +6,23 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Price {
 
-    private Integer priceInPence;
+    private Integer price;
 
-    public Price(Integer priceInPence) {
-        this.priceInPence = priceInPence;
+    public Price(Integer price) {
+        this.price = price;
+    }
+
+    public Price multiply(Integer numberRequired) {
+        return new Price(this.price * numberRequired);
+    }
+
+    public Price minus(Price number) {
+        return new Price(this.price - number.price);
+    }
+
+    public boolean lessThan(Price totalCharge) {
+
+        return this.price < totalCharge.price;
     }
 
     @Override

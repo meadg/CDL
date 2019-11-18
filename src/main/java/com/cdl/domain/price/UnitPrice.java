@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.math.BigDecimal;
+
 public class UnitPrice {
 
 
@@ -12,6 +14,11 @@ public class UnitPrice {
     public UnitPrice(Price price) {
 
         unitPrice = price;
+    }
+
+//testthis
+    public Price getPrice() {
+        return unitPrice;
     }
 
     @Override
@@ -28,4 +35,5 @@ public class UnitPrice {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
 }
