@@ -43,14 +43,8 @@ public class UnitChargeItemTest {
     }
     @Test
     public void isDiscountableIfnotAlreadyApplied() {
+
         assertThat(unitChargeItem1.isDiscountAble(),is(true));
     }
-
-    @Test
-    public void isNotDiscountableIfAlreadyDiscounted() {
-        unitChargeItem1.flagAsDiscounted();
-        assertThat(unitChargeItem1.isDiscountAble(),is(false));
-    }
-
 
 }

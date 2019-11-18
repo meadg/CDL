@@ -1,7 +1,6 @@
 package com.cdl.domain;
 
 import com.cdl.domain.price.Price;
-import com.cdl.exception.DiscountNotAllowedException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,13 +46,6 @@ public class DiscountChargeItemTest {
     @Test
     public void isNotDiscountable() {
         assertThat(discountChargeItem1.isDiscountAble(),is(false));
-
-    }
-
-    @Test(expected = DiscountNotAllowedException.class)
-    public void flaggingAsDiscountAppliedNotAllowed()
-    {
-        discountChargeItem1.flagAsDiscounted();
 
     }
 

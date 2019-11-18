@@ -1,20 +1,12 @@
 package com.cdl.domain;
 
-import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
-import com.cdl.exception.DiscountNotAllowedException;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public abstract class ChargeItem {
 
-    //make this implements checkout item and specify a type, charge, discount, information
     private StockItem stockItem;
     private String chargeDescription;
     private Price chargeValue;
-    protected boolean discountApplied = false;
-    private boolean processed = false;
 
     public ChargeItem(StockItem stockItem, String chargeDescription, Price chargeValue) {
 
@@ -23,19 +15,16 @@ public abstract class ChargeItem {
         this.chargeValue = chargeValue;
     }
 
-    public boolean isProcessed(){
-        return processed;
-    }
 
-    public abstract boolean isChargeItem();
-    public abstract boolean isDiscountAble();
-
-    public  void flagAsDiscounted(){
-        //Add getType for message?
-        throw new DiscountNotAllowedException();
+    public int addPriceToValue(int value){
+        return chargeValue.addTo(value);
     }
 
     public  boolean matchesStockItem(StockItem theItem){
         return this.stockItem.equals(theItem);
     }
+
+    public abstract boolean isChargeItem();
+    public abstract boolean isDiscountAble();
+
 }

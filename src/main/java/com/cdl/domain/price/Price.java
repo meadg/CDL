@@ -25,6 +25,10 @@ public class Price {
         return this.price < totalCharge.price;
     }
 
+    public Integer addTo(int value){
+        return value+this.price;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
