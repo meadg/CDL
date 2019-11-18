@@ -1,0 +1,12 @@
+/target/
+.project
+.settings
+.gradle
+.idea
+bin
+build
+out
+catalina.home_IS_UNDEFINED
+*.iml
+*.classpath
+*.log
