@@ -17,6 +17,16 @@ public class UnitChargeItem extends ChargeItem {
     }
 
     @Override
+    public boolean isDiscountAble() {
+        return !discountApplied;
+    }
+
+    @Override
+    public void flagAsDiscounted() {
+        this.discountApplied =  true;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
     }

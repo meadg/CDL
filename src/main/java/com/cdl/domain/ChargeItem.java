@@ -2,6 +2,7 @@ package com.cdl.domain;
 
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
+import com.cdl.exception.DiscountNotAllowedException;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,7 +13,7 @@ public abstract class ChargeItem {
     private StockItem stockItem;
     private String chargeDescription;
     private Price chargeValue;
-    private boolean discountApplied = false;
+    protected boolean discountApplied = false;
     private boolean processed = false;
 
     public ChargeItem(StockItem stockItem, String chargeDescription, Price chargeValue) {
@@ -27,5 +28,14 @@ public abstract class ChargeItem {
     }
 
     public abstract boolean isChargeItem();
+    public abstract boolean isDiscountAble();
 
+    public  void flagAsDiscounted(){
+        //Add getType for message?
+        throw new DiscountNotAllowedException();
+    }
+
+    public  boolean matchesStockItem(StockItem theItem){
+        return this.stockItem.equals(theItem);
+    }
 }
