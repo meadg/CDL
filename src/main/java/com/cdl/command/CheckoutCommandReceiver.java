@@ -17,16 +17,17 @@ public class CheckoutCommandReceiver {
     }
 
     public void beginCheckoutSession(CheckOutSession checkoutSession) {
+
         checkoutSession.setState(SessionState.NEW);
     }
 
     public void completeCheckoutSession(CheckOutSession checkoutSession) {
         checkoutSession.setState(SessionState.COMPLETE);
-        //call back on session to print totals
+        checkoutSession.completeCheckoutAndPrintTotals();
     }
 
     public void createChargeItemsForScannedItem(StockItem stockItem, CheckOutSession checkOutSession) {
         stockItemChargingHandler.applyStockItemPricingRules(stockItem,checkOutSession);
-        //call back on session to print items
+        checkOutSession.createScannedChargeItemOutput();
     }
 }

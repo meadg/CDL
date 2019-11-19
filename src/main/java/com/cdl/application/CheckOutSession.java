@@ -11,6 +11,12 @@ public class CheckOutSession {
     private ChargeItemAccumulator chargeItemAccumulator = new ChargeItemAccumulator();
     private SessionState currentState;
 
+    public CheckOutSession(ScanLogger scanLogger) {
+        this.scanLogger = scanLogger;
+    }
+
+    private ScanLogger scanLogger;
+
 
     public void handleApplicationCommand(CheckOutApplicationCommand command) {
         //validate state here?
@@ -44,4 +50,9 @@ public class CheckOutSession {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public void completeCheckoutAndPrintTotals() {
+    }
+
+    public void createScannedChargeItemOutput() {
+    }
 }

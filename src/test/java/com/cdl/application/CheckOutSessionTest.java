@@ -17,13 +17,15 @@ public class CheckOutSessionTest {
 
     @Mock
     private CheckOutApplicationCommand checkOutApplicationCommand;
+    @Mock
+    private ScanLogger scanLogger;
 
     private CheckOutSession checkOutSession1,checkOutSession2;
 
     @Before
     public void setUp(){
-        checkOutSession1 = new CheckOutSession();
-        checkOutSession2 = new CheckOutSession();
+        checkOutSession1 = new CheckOutSession(scanLogger);
+        checkOutSession2 = new CheckOutSession(scanLogger);
 
     }
 

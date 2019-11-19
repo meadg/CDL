@@ -39,11 +39,21 @@ public class CheckoutCommandReceiverTest {
         checkoutCommandReceiver.completeCheckoutSession(checkoutSession);
         verify(checkoutSession).setState(SessionState.COMPLETE);
     }
+    @Test
+    public void completeCheckoutSessionCallsBackOnSessionToOutputTotals(){
+        checkoutCommandReceiver.completeCheckoutSession(checkoutSession);
+        verify(checkoutSession).completeCheckoutAndPrintTotals();
+    }
 
     @Test
     public void createChargeItemsForScannedItemInvokesCorrectMethodOnHandler(){
         checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkoutSession);
         verify(stockItemChargingHandler).applyStockItemPricingRules(stockItem,checkoutSession);
+    }
+    @Test
+    public void createChargeItemsForScannedItemCallsBackOnSessionToPrintOutput(){
+        checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkoutSession);
+        verify(checkoutSession).createScannedChargeItemOutput();
     }
 
 

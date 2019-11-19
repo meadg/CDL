@@ -47,4 +47,12 @@ public class UnitChargeItemTest {
         assertThat(unitChargeItem1.isDiscountAble(),is(true));
     }
 
+    @Test
+    public void addChargeToItem_returnsCorrectValue(){
+
+        assertThat(unitChargeItem1.addPriceToValue(12),is(23));
+        assertThat(unitChargeItem1.addPriceToValue(-30),is(-19));
+
+    }
+
 }
