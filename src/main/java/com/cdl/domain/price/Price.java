@@ -25,6 +25,11 @@ public class Price {
         return this.price < totalCharge.price;
     }
 
+    public int getValue() {
+
+        return price;
+    }
+
     public Integer addTo(int value){
         return value+this.price;
     }
@@ -43,4 +48,6 @@ public class Price {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+
 }

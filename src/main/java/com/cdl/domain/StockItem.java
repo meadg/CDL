@@ -13,6 +13,10 @@ public class StockItem {
         this.stockItemId = stockItemId;
     }
 
+    public String getStockItemId() {
+        return stockItemId;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);

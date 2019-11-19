@@ -19,6 +19,7 @@ public class CheckoutCommandReceiver {
     public void beginCheckoutSession(CheckOutSession checkoutSession) {
 
         checkoutSession.setState(SessionState.NEW);
+        checkoutSession.beginCheckOutSession();
     }
 
     public void completeCheckoutSession(CheckOutSession checkoutSession) {

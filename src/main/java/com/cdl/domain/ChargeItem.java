@@ -24,6 +24,18 @@ public abstract class ChargeItem {
         return this.stockItem.equals(theItem);
     }
 
+     public StockItem getStockItem() {
+        return stockItem;
+    }
+
+    public String getChargeDescription() {
+        return chargeDescription;
+    }
+
+    public Price getChargeValue() {
+        return chargeValue;
+    }
+
     public abstract boolean isChargeItem();
     public abstract boolean isDiscountAble();
 

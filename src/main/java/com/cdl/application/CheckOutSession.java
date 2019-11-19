@@ -5,27 +5,23 @@ import com.cdl.command.CheckOutApplicationCommand;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class CheckOutSession {
 
-    private ChargeItemAccumulator chargeItemAccumulator = new ChargeItemAccumulator();
     private SessionState currentState;
-
-    public CheckOutSession(ScanLogger scanLogger) {
-        this.scanLogger = scanLogger;
-    }
-
+    private ChargeItemAccumulator chargeItemAccumulator;
     private ScanLogger scanLogger;
 
+    public CheckOutSession(ChargeItemAccumulator chargeItemAccumulator,ScanLogger scanLogger) {
+        this.chargeItemAccumulator = chargeItemAccumulator;
+        this.scanLogger = scanLogger;
+    }
 
     public void handleApplicationCommand(CheckOutApplicationCommand command) {
         //validate state here?
         command.executeCommand(this);
     }
-
-//    public void updateReceipt(ReceiptPrinter receiptPrinter){
-//        chargeItemAccumulator.outputNewCheckoutItems(receiptPrinter);
-//    }
 
     public ChargeItemAccumulator getItemAccumulator() {
         return chargeItemAccumulator;
@@ -34,6 +30,21 @@ public class CheckOutSession {
     public void setState(SessionState theState) {
         this.currentState = theState;
     }
+
+
+    public void completeCheckoutAndPrintTotals() {
+        chargeItemAccumulator.produceFinalCheckOutTotal(scanLogger);
+    }
+
+    public void createScannedChargeItemOutput() {
+        chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
+
+    }
+    //testthis
+    public void beginCheckOutSession() {
+        scanLogger.startingCheckout();
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -47,12 +58,7 @@ public class CheckOutSession {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
-    public void completeCheckoutAndPrintTotals() {
-    }
-
-    public void createScannedChargeItemOutput() {
-    }
 }

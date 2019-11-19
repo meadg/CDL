@@ -1,7 +1,11 @@
 package com.cdl.charging;
 
+import com.cdl.application.ScanLogger;
 import com.cdl.domain.ChargeItem;
+import com.cdl.domain.DiscountChargeItem;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.UnitChargeItem;
+import com.cdl.domain.price.Price;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +19,7 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.emptyCollectionOf;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,6 +29,8 @@ public class ChargeItemAccumulatorTest {
     private StockItem stockItem1;
     @Mock
     private ChargeItem chargeItem1, chargeItem2,chargeItem3,chargeItem4;
+    @Mock
+    private ScanLogger scanLogger;
 
     private ChargeItemAccumulator chargeItemAccumulator;
 
@@ -130,6 +137,85 @@ public class ChargeItemAccumulatorTest {
         CheckOutItem expectedItem4 = new CheckOutItem(chargeItem4,0);
 
     }
+
+    @Test
+    public void logsSingleUnprocessedItem(){
+        StockItem stockItem = new StockItem("ABC");
+        final Price price = new Price(12);
+        ChargeItem chargeItem = new UnitChargeItem(stockItem,"Unit Price", price);
+
+        addChargeItemsToAccumulator(chargeItem);
+
+        chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
+
+        final CheckOutItem expectedCheckoutItem = new CheckOutItem(chargeItem, 12);
+        expectedCheckoutItem.flagAsProcessed();
+        verify(scanLogger).outputItemAndSubtotal(expectedCheckoutItem);
+
+    }
+    @Test
+    public void logMultipleUnprocessedItem(){
+        StockItem stockItem1 = new StockItem("ABC");
+        final Price price1 = new Price(12);
+        StockItem stockItem2 = new StockItem("CDE");
+        final Price price2 = new Price(-3);
+
+
+        ChargeItem chargeItem1 = new UnitChargeItem(stockItem1,"Unit Price", price1);
+        ChargeItem chargeItem2 = new DiscountChargeItem(stockItem2,"Multibuy discount", price2);
+
+        addChargeItemsToAccumulator(chargeItem1,chargeItem2);
+
+        chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
+
+        final CheckOutItem expectedCheckoutItem1 = new CheckOutItem(chargeItem1, 12);
+        expectedCheckoutItem1.flagAsProcessed();
+        final CheckOutItem expectedCheckoutItem2 = new CheckOutItem(chargeItem2, 9);
+        expectedCheckoutItem2.flagAsProcessed();
+
+        verify(scanLogger).outputItemAndSubtotal(expectedCheckoutItem1);
+        verify(scanLogger).outputItemAndSubtotal(expectedCheckoutItem2);
+
+    }
+
+    @Test
+    public void logCheckOutSessionCompletion(){
+        StockItem stockItem1 = new StockItem("ABC");
+        final Price price1 = new Price(12);
+        StockItem stockItem2 = new StockItem("ABC");
+        final Price price2 = new Price(-3);
+
+        ChargeItem chargeItem1 = new UnitChargeItem(stockItem1,"Unit Price", price1);
+        ChargeItem chargeItem2 = new DiscountChargeItem(stockItem2,"Multibuy discount", price2);
+
+        addChargeItemsToAccumulator(chargeItem1,chargeItem2);
+
+        chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
+
+        chargeItemAccumulator.produceFinalCheckOutTotal(scanLogger);
+        verify(scanLogger).outputFinalCheckOutTotals(1,9);
+
+    }
+    @Test
+    public void logCheckOutSessionCompletionMultipleItems(){
+        StockItem stockItem1 = new StockItem("ABC");
+        final Price price1 = new Price(12);
+        StockItem stockItem2 = new StockItem("CBA");
+        final Price price2 = new Price(-3);
+
+
+        ChargeItem chargeItem1 = new UnitChargeItem(stockItem1,"Unit Price", price1);
+        ChargeItem chargeItem2 = new DiscountChargeItem(stockItem2,"Multibuy discount", price2);
+
+        addChargeItemsToAccumulator(chargeItem1,chargeItem1,chargeItem1,chargeItem2,chargeItem1);
+
+        chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
+
+        chargeItemAccumulator.produceFinalCheckOutTotal(scanLogger);
+        verify(scanLogger).outputFinalCheckOutTotals(4,45);
+
+    }
+
 
 
     private void addChargeItemsToAccumulator(ChargeItem... chargeItems){

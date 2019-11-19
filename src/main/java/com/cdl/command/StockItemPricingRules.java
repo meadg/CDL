@@ -3,6 +3,7 @@ package com.cdl.command;
 import com.cdl.domain.StockItem;
 import com.cdl.pricing.rules.PriceRule;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,9 +13,13 @@ import java.util.Map;
 
 public class StockItemPricingRules {
 
-    private Map<StockItem,StockItemPricingRule> itemPricingRules;
+    private Map<StockItem,StockItemPricingRule> itemPricingRules = Maps.newHashMap();
 
     public StockItemPricingRule retrievePricingRulesForStockItem(StockItem stockItem) {
         return itemPricingRules.get(stockItem);
+    }
+
+    public void addStockItemPricingRule(StockItem stockItem, StockItemPricingRule pricingRule ){
+        this.itemPricingRules.put(stockItem,pricingRule);
     }
 }
