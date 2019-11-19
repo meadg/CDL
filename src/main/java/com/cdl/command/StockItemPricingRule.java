@@ -3,11 +3,9 @@ package com.cdl.command;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 import com.cdl.pricing.rules.PriceRule;
-import com.google.common.collect.Lists;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class StockItemPricingRule {
@@ -35,7 +33,7 @@ public class StockItemPricingRule {
 
         private StockItem stockItem;
         private UnitPrice unitPrice;
-        private List<PriceRule> priceRules = Lists.newArrayList();
+        private List<PriceRule> priceRules = new ArrayList<>();
 
         public StockItemPricingRuleBuilder withStockItem(StockItem stockItem) {
             this.stockItem = stockItem;

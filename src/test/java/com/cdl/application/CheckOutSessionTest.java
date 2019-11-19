@@ -32,7 +32,6 @@ public class CheckOutSessionTest {
 
     }
 
-
     @Test
     public void setStateWorksCorrectly(){
 

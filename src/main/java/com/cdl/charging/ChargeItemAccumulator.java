@@ -3,14 +3,10 @@ package com.cdl.charging;
 import com.cdl.application.ScanLogger;
 import com.cdl.domain.ChargeItem;
 import com.cdl.domain.StockItem;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.toList;
 
@@ -58,21 +54,19 @@ public class ChargeItemAccumulator {
         scanLogger.outputFinalCheckOutTotals(numberOfItems,finalSubTotal);
     }
 
-
     @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChargeItemAccumulator that = (ChargeItemAccumulator) o;
+        return Objects.equals(checkOutItems, that.checkOutItems);
     }
 
     @Override
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
+        return Objects.hash(checkOutItems);
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
 
 
     private int retrieveLastSubTotalValue() {

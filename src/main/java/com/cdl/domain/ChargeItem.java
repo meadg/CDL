@@ -2,6 +2,8 @@ package com.cdl.domain;
 
 import com.cdl.domain.price.Price;
 
+import java.util.Objects;
+
 public abstract class ChargeItem {
 
     private StockItem stockItem;
@@ -38,5 +40,21 @@ public abstract class ChargeItem {
 
     public abstract boolean isChargeItem();
     public abstract boolean isDiscountAble();
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChargeItem that = (ChargeItem) o;
+        return Objects.equals(stockItem, that.stockItem) &&
+                Objects.equals(chargeDescription, that.chargeDescription) &&
+                Objects.equals(chargeValue, that.chargeValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stockItem, chargeDescription, chargeValue);
+    }
 
 }

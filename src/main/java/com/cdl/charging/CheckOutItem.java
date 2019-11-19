@@ -3,10 +3,8 @@ package com.cdl.charging;
 import com.cdl.domain.ChargeItem;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Objects;
 
 public class CheckOutItem {
 
@@ -20,7 +18,6 @@ public class CheckOutItem {
         this.subTotal = subTotal;
     }
 
-    //re
     public StockItem getStockItem() {
         return chargeItem.getStockItem();
     }
@@ -54,22 +51,23 @@ public class CheckOutItem {
         return chargeItem.isChargeItem();
     }
 
+
     @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckOutItem that = (CheckOutItem) o;
+        return subTotal == that.subTotal &&
+                discounted == that.discounted &&
+                processed == that.processed &&
+                Objects.equals(chargeItem, that.chargeItem);
     }
 
     @Override
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
+        return Objects.hash(chargeItem, subTotal, discounted, processed);
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
-
-    //testthis
     public boolean isUnprocessed() {
         return !processed;
     }

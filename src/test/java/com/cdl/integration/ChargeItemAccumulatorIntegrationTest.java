@@ -7,10 +7,6 @@ import com.cdl.domain.DiscountChargeItem;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.UnitChargeItem;
 import com.cdl.domain.price.Price;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 

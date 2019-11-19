@@ -5,12 +5,6 @@ import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 import com.cdl.pricing.rules.PriceRule;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import java.util.List;
-import java.util.Map;
 
 public class StockItemChargingHandler {
 

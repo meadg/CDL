@@ -5,9 +5,6 @@ import com.cdl.domain.DiscountChargeItem;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
 import com.cdl.domain.price.UnitPrice;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class MultiBuyPriceRule implements PriceRule {
 

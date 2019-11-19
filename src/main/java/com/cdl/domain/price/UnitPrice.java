@@ -1,10 +1,6 @@
 package com.cdl.domain.price;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import java.math.BigDecimal;
+import java.util.Objects;
 
 public class UnitPrice {
 
@@ -16,24 +12,20 @@ public class UnitPrice {
         unitPrice = price;
     }
 
-//testthis
     public Price getPrice() {
         return unitPrice;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UnitPrice unitPrice1 = (UnitPrice) o;
+        return Objects.equals(unitPrice, unitPrice1.unitPrice);
     }
 
     @Override
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
+        return Objects.hash(unitPrice);
     }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
 }
