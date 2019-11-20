@@ -2,6 +2,7 @@ package com.cdl.application;
 
 import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.logging.ScanLogger;
 
 public class CheckOutSession {
 
@@ -15,7 +16,7 @@ public class CheckOutSession {
     }
 
     public void handleApplicationCommand(CheckOutApplicationCommand command) {
-        //validate state here?
+        //validate state here
         command.executeCommand(this);
     }
 

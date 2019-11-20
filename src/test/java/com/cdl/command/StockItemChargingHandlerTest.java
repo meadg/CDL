@@ -5,11 +5,12 @@ import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 import com.cdl.pricing.rules.PriceRule;
+import com.cdl.pricing.rules.StockItemPricingRule;
+import com.cdl.pricing.rules.StockItemPricingRules;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 

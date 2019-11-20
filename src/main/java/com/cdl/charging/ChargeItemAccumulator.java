@@ -1,7 +1,8 @@
 package com.cdl.charging;
 
-import com.cdl.application.ScanLogger;
-import com.cdl.domain.ChargeItem;
+import com.cdl.domain.CheckOutItem;
+import com.cdl.logging.ScanLogger;
+import com.cdl.domain.charge.ChargeItem;
 import com.cdl.domain.StockItem;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.cdl.command;
+package com.cdl.pricing.rules;
 
 import com.cdl.domain.StockItem;
 

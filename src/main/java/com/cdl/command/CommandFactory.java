@@ -1,4 +1,4 @@
-package com.cdl.application;
+package com.cdl.command;
 
 import com.cdl.command.BeginCheckoutCommand;
 import com.cdl.command.CheckOutApplicationCommand;

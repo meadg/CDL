@@ -1,8 +1,7 @@
-package com.cdl.command;
+package com.cdl.pricing.rules;
 
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
-import com.cdl.pricing.rules.PriceRule;
 
 
 import java.util.ArrayList;

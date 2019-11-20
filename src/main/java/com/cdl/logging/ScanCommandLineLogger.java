@@ -1,6 +1,6 @@
-package com.cdl.application;
+package com.cdl.logging;
 
-import com.cdl.charging.CheckOutItem;
+import com.cdl.domain.CheckOutItem;
 
 import java.text.NumberFormat;
 import java.util.Locale;

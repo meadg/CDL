@@ -5,6 +5,8 @@ import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 import com.cdl.pricing.rules.PriceRule;
+import com.cdl.pricing.rules.StockItemPricingRule;
+import com.cdl.pricing.rules.StockItemPricingRules;
 
 public class StockItemChargingHandler {
 

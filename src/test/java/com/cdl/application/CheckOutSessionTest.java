@@ -2,6 +2,7 @@ package com.cdl.application;
 
 import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.logging.ScanLogger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

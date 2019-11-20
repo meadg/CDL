@@ -1,10 +1,11 @@
 package com.cdl.charging;
 
-import com.cdl.application.ScanLogger;
-import com.cdl.domain.ChargeItem;
-import com.cdl.domain.DiscountChargeItem;
+import com.cdl.domain.CheckOutItem;
+import com.cdl.logging.ScanLogger;
+import com.cdl.domain.charge.ChargeItem;
+import com.cdl.domain.charge.DiscountChargeItem;
 import com.cdl.domain.StockItem;
-import com.cdl.domain.UnitChargeItem;
+import com.cdl.domain.charge.UnitChargeItem;
 import com.cdl.domain.price.Price;
 import org.junit.Before;
 import org.junit.Test;

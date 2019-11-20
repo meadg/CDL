@@ -1,7 +1,7 @@
 package com.cdl.pricing.rules;
 
 import com.cdl.charging.ChargeItemAccumulator;
-import com.cdl.domain.DiscountChargeItem;
+import com.cdl.domain.charge.DiscountChargeItem;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
 import com.cdl.domain.price.UnitPrice;

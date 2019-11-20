@@ -1,11 +1,11 @@
 package com.cdl.integration;
 
 import com.cdl.charging.ChargeItemAccumulator;
-import com.cdl.charging.CheckOutItem;
-import com.cdl.domain.ChargeItem;
-import com.cdl.domain.DiscountChargeItem;
+import com.cdl.domain.CheckOutItem;
+import com.cdl.domain.charge.ChargeItem;
+import com.cdl.domain.charge.DiscountChargeItem;
 import com.cdl.domain.StockItem;
-import com.cdl.domain.UnitChargeItem;
+import com.cdl.domain.charge.UnitChargeItem;
 import com.cdl.domain.price.Price;
 import org.junit.Before;
 import org.junit.Test;

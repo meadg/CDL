@@ -1,5 +1,6 @@
-package com.cdl.domain;
+package com.cdl.domain.charge;
 
+import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
 
 public class DiscountChargeItem extends ChargeItem {

@@ -1,7 +1,6 @@
-package com.cdl.charging;
+package com.cdl.domain;
 
-import com.cdl.domain.ChargeItem;
-import com.cdl.domain.StockItem;
+import com.cdl.domain.charge.ChargeItem;
 import com.cdl.domain.price.Price;
 
 import java.util.Objects;

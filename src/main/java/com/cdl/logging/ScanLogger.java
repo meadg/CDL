@@ -1,8 +1,6 @@
-package com.cdl.application;
+package com.cdl.logging;
 
-import com.cdl.charging.CheckOutItem;
-import com.cdl.domain.StockItem;
-import com.cdl.domain.price.Price;
+import com.cdl.domain.CheckOutItem;
 
 public interface ScanLogger {
 
