@@ -1,12 +1,5 @@
 package com.cdl.command;
 
-import com.cdl.command.BeginCheckoutCommand;
-import com.cdl.command.CheckOutApplicationCommand;
-import com.cdl.command.CheckoutCommandReceiver;
-import com.cdl.command.CompleteCheckoutCommand;
-import com.cdl.command.ExitApplicationCommand;
-import com.cdl.command.ScanItemCommand;
-import com.cdl.command.UnknownApplicationCommand;
 import com.cdl.domain.StockItem;
 
 public class CommandFactory {
