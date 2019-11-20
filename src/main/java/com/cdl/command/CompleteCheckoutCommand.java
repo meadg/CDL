@@ -1,9 +1,13 @@
 package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
+import com.cdl.application.SessionState;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CompleteCheckoutCommand implements CheckOutApplicationCommand {
-    //Could construct this here or get from factory or singleton??
+
     private CheckoutCommandReceiver checkoutCommandReceiver;
 
     public CompleteCheckoutCommand(CheckoutCommandReceiver checkoutCommandReceiver) {
@@ -15,8 +19,15 @@ public class CompleteCheckoutCommand implements CheckOutApplicationCommand {
         checkoutCommandReceiver.completeCheckoutSession(session);
 
     }
+
     @Override
     public boolean isTerminating() {
         return false;
+    }
+
+
+    @Override
+    public List<SessionState> validForStates() {
+        return Arrays.asList(SessionState.SCANNING, SessionState.NEW);
     }
 }

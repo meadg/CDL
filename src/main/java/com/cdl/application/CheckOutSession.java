@@ -2,6 +2,7 @@ package com.cdl.application;
 
 import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.domain.StockItem;
 import com.cdl.logging.ScanLogger;
 
 public class CheckOutSession {
@@ -10,13 +11,12 @@ public class CheckOutSession {
     private ChargeItemAccumulator chargeItemAccumulator;
     private ScanLogger scanLogger;
 
-    public CheckOutSession(ChargeItemAccumulator chargeItemAccumulator,ScanLogger scanLogger) {
+    public CheckOutSession(ChargeItemAccumulator chargeItemAccumulator, ScanLogger scanLogger) {
         this.chargeItemAccumulator = chargeItemAccumulator;
         this.scanLogger = scanLogger;
     }
 
     public void handleApplicationCommand(CheckOutApplicationCommand command) {
-        //validate state here
         command.executeCommand(this);
     }
 
@@ -31,17 +31,33 @@ public class CheckOutSession {
 
     public void completeCheckoutAndPrintTotals() {
         chargeItemAccumulator.produceFinalCheckOutTotal(scanLogger);
+        chargeItemAccumulator.clearAccumulator();
+        this.setState(SessionState.AVAILABLE);
     }
 
     public void createScannedChargeItemOutput() {
         chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
     }
+
     public void beginCheckOutSession() {
         scanLogger.startingCheckout();
     }
 
     public void registerUnknownCommand() {
         scanLogger.unknownCommand();
+    }
+
+    public void registerInvalidCommandForState() {
+        scanLogger.invalidCommandForState(this.currentState);
+    }
+
+    public void registerInvalidProduct(StockItem stockItem) {
+        scanLogger.registerInvalidProduct(stockItem);
+    }
+
+
+    public SessionState currentState() {
+        return this.currentState;
     }
 
     @Override

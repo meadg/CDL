@@ -19,15 +19,15 @@ public abstract class ChargeItem {
     }
 
 
-    public int addPriceToValue(int value){
+    public int addPriceToValue(int value) {
         return chargeValue.addTo(value);
     }
 
-    public  boolean matchesStockItem(StockItem theItem){
+    public boolean matchesStockItem(StockItem theItem) {
         return this.stockItem.equals(theItem);
     }
 
-     public StockItem getStockItem() {
+    public StockItem getStockItem() {
         return stockItem;
     }
 
@@ -40,6 +40,7 @@ public abstract class ChargeItem {
     }
 
     public abstract boolean isChargeItem();
+
     public abstract boolean isDiscountAble();
 
 

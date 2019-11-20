@@ -1,7 +1,11 @@
 package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
+import com.cdl.application.SessionState;
 import com.cdl.domain.StockItem;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ScanItemCommand implements CheckOutApplicationCommand {
 
@@ -15,7 +19,7 @@ public class ScanItemCommand implements CheckOutApplicationCommand {
 
     @Override
     public void executeCommand(CheckOutSession checkOutSession) {
-        checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkOutSession);
+        checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem, checkOutSession);
 
     }
 
@@ -23,4 +27,11 @@ public class ScanItemCommand implements CheckOutApplicationCommand {
     public boolean isTerminating() {
         return false;
     }
+
+    @Override
+    public List<SessionState> validForStates() {
+        return Arrays.asList(SessionState.NEW, SessionState.SCANNING);
+    }
+
+
 }

@@ -2,8 +2,8 @@ package com.cdl.application;
 
 
 public enum SessionState {
-    AVAILABLE,
     NEW,
+    AVAILABLE,
     SCANNING,
     UPDATING,
     COMPLETE

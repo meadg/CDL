@@ -1,6 +1,8 @@
 package com.cdl.logging;
 
+import com.cdl.application.SessionState;
 import com.cdl.domain.CheckOutItem;
+import com.cdl.domain.StockItem;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -13,7 +15,10 @@ public class ScanCommandLineLogger implements ScanLogger {
     public static final String SUBITEM_OUTPUT = "Product Code:%s Description:%s Value:%s Subtotal:%s";
     public static final String TOTAL_AMOUNT = "Number of Items:%s Total Amount:%s";
     private static final String STARTINGITEMCHECKOUT = "Starting Check Out";
-    private static final String UNKNOWN_COMMAND = "Unknown command please try again";
+    private static final String UNKNOWN_COMMAND = "Unknown command Please try again";
+    private static final String INVALID_STATE_COMMAND = "Command is not valid for current session state which is: '%s' Please try again";
+    private static final String PRODUCT_NOT_FOUND = "Product: %s not found Please try again";
+    ;
     private static NumberFormat GBP = NumberFormat.getCurrencyInstance(Locale.UK);
 
     @Override
@@ -45,8 +50,18 @@ public class ScanCommandLineLogger implements ScanLogger {
         System.out.println(UNKNOWN_COMMAND);
     }
 
+    @Override
+    public void invalidCommandForState(SessionState currentState) {
+        System.out.println(format(INVALID_STATE_COMMAND, currentState.name()));
+    }
 
-    private String asPounds(int value){
+    @Override
+    public void registerInvalidProduct(StockItem stockItem) {
+        System.out.println(format(PRODUCT_NOT_FOUND, stockItem.getStockItemId()));
+    }
+
+
+    private String asPounds(int value) {
         return GBP.format(value / 100.0);
     }
 }

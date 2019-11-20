@@ -1,9 +1,9 @@
 package com.cdl.charging;
 
 import com.cdl.domain.CheckOutItem;
-import com.cdl.logging.ScanLogger;
-import com.cdl.domain.charge.ChargeItem;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.charge.ChargeItem;
+import com.cdl.logging.ScanLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class ChargeItemAccumulator {
 
         int newSubTotal = chargeItem.addPriceToValue(retrieveLastSubTotalValue());
 
-        checkOutItems.add(new CheckOutItem(chargeItem,newSubTotal));
+        checkOutItems.add(new CheckOutItem(chargeItem, newSubTotal));
     }
 
 
@@ -34,7 +34,7 @@ public class ChargeItemAccumulator {
     }
 
     public void flagItemsAsDiscounted(StockItem stockItem, Integer numberOfItems) {
-        checkOutItems.stream().filter(item -> item.matchesStockItem(stockItem) && item.isDiscountAble()).limit(numberOfItems).forEach(match-> match.flagAsDiscounted());
+        checkOutItems.stream().filter(item -> item.matchesStockItem(stockItem) && item.isDiscountAble()).limit(numberOfItems).forEach(match -> match.flagAsDiscounted());
     }
 
 
@@ -52,7 +52,11 @@ public class ChargeItemAccumulator {
     public void produceFinalCheckOutTotal(ScanLogger scanLogger) {
         int finalSubTotal = retrieveLastSubTotalValue();
         int numberOfItems = checkOutItems.stream().filter(item -> item.isChargeItem()).collect(toList()).size();
-        scanLogger.outputFinalCheckOutTotals(numberOfItems,finalSubTotal);
+        scanLogger.outputFinalCheckOutTotals(numberOfItems, finalSubTotal);
+    }
+
+    public void clearAccumulator() {
+        checkOutItems = new ArrayList<>();
     }
 
     @Override
@@ -69,9 +73,8 @@ public class ChargeItemAccumulator {
     }
 
 
-
     private int retrieveLastSubTotalValue() {
-        return checkOutItems.isEmpty()? 0 : checkOutItems.get(checkOutItems.size()-1).getSubTotal();
+        return checkOutItems.isEmpty() ? 0 : checkOutItems.get(checkOutItems.size() - 1).getSubTotal();
     }
 
 }

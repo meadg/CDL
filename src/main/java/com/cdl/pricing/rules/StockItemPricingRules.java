@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class StockItemPricingRules {
 
-    private Map<StockItem,StockItemPricingRule> itemPricingRules = new HashMap<>();
+    private Map<StockItem, StockItemPricingRule> itemPricingRules = new HashMap<>();
 
     public StockItemPricingRule retrievePricingRulesForStockItem(StockItem stockItem) {
         return itemPricingRules.get(stockItem);
     }
 
-    public void addStockItemPricingRule(StockItem stockItem, StockItemPricingRule pricingRule ){
-        this.itemPricingRules.put(stockItem,pricingRule);
+    public void addStockItemPricingRule(StockItem stockItem, StockItemPricingRule pricingRule) {
+        this.itemPricingRules.put(stockItem, pricingRule);
     }
 }

@@ -1,8 +1,8 @@
 package com.cdl.pricing.rules;
 
 import com.cdl.charging.ChargeItemAccumulator;
-import com.cdl.domain.charge.DiscountChargeItem;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.charge.DiscountChargeItem;
 import com.cdl.domain.price.Price;
 import com.cdl.domain.price.UnitPrice;
 
@@ -35,7 +35,6 @@ public class MultiBuyPriceRule implements PriceRule {
     private void createDiscountItem(StockItem stockItem, ChargeItemAccumulator chargeItemAccumulator, Price totalCharge) {
         Price discountPrice = multiplePrice.minus(totalCharge);
         chargeItemAccumulator.addChargeItem(new DiscountChargeItem(stockItem, MULTI_BUY_DISCOUNT, discountPrice));
-        //pass in discount type?
-        chargeItemAccumulator.flagItemsAsDiscounted(stockItem,numberRequired);
+        chargeItemAccumulator.flagItemsAsDiscounted(stockItem, numberRequired);
     }
 }

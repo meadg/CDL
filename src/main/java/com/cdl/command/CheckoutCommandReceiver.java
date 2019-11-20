@@ -25,7 +25,13 @@ public class CheckoutCommandReceiver {
     }
 
     public void createChargeItemsForScannedItem(StockItem stockItem, CheckOutSession checkOutSession) {
-        stockItemChargingHandler.applyStockItemPricingRules(stockItem,checkOutSession);
-        checkOutSession.createScannedChargeItemOutput();
+        checkOutSession.setState(SessionState.SCANNING);
+        if (stockItemChargingHandler.isValidProduct(stockItem)) {
+            stockItemChargingHandler.applyStockItemPricingRules(stockItem, checkOutSession);
+            checkOutSession.createScannedChargeItemOutput();
+
+        } else {
+            checkOutSession.registerInvalidProduct(stockItem);
+        }
     }
 }

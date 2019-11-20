@@ -28,8 +28,8 @@ public class Price {
         return price;
     }
 
-    public Integer addTo(int value){
-        return value+this.price;
+    public Integer addTo(int value) {
+        return value + this.price;
     }
 
     @Override

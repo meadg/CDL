@@ -1,6 +1,10 @@
 package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
+import com.cdl.application.SessionState;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class BeginCheckoutCommand implements CheckOutApplicationCommand {
     private CheckoutCommandReceiver checkoutCommandReceiver;
@@ -18,5 +22,10 @@ public class BeginCheckoutCommand implements CheckOutApplicationCommand {
     @Override
     public boolean isTerminating() {
         return false;
+    }
+
+    @Override
+    public List<SessionState> validForStates() {
+        return Arrays.asList(SessionState.AVAILABLE);
     }
 }

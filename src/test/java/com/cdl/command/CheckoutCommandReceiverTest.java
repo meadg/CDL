@@ -11,6 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CheckoutCommandReceiverTest {
@@ -47,11 +48,13 @@ public class CheckoutCommandReceiverTest {
 
     @Test
     public void createChargeItemsForScannedItemInvokesCorrectMethodOnHandler(){
+        when(stockItemChargingHandler.isValidProduct(stockItem)).thenReturn(true);
         checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkoutSession);
         verify(stockItemChargingHandler).applyStockItemPricingRules(stockItem,checkoutSession);
     }
     @Test
     public void createChargeItemsForScannedItemCallsBackOnSessionToPrintOutput(){
+        when(stockItemChargingHandler.isValidProduct(stockItem)).thenReturn(true);
         checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkoutSession);
         verify(checkoutSession).createScannedChargeItemOutput();
     }

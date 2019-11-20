@@ -46,7 +46,7 @@ public class CheckOutItem {
         this.discounted = true;
     }
 
-    public boolean isChargeItem(){
+    public boolean isChargeItem() {
         return chargeItem.isChargeItem();
     }
 

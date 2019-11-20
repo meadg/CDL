@@ -16,15 +16,22 @@ public class StockItemChargingHandler {
         this.stockItemPricingRules = stockItemPricingRules;
     }
 
+    public boolean isValidProduct(StockItem stockItem) {
+        final StockItemPricingRule stockItemPricingRule = stockItemPricingRules.retrievePricingRulesForStockItem(stockItem);
+        if (stockItemPricingRule == null) {
+            return false;
+        }
+        return true;
+    }
+
     public void applyStockItemPricingRules(StockItem stockItem, CheckOutSession checkoutSession) {
         final StockItemPricingRule stockItemPricingRule = stockItemPricingRules.retrievePricingRulesForStockItem(stockItem);
 
         UnitPrice stockItemUnitPrice = stockItemPricingRule.getUnitPrice();
         ChargeItemAccumulator chargeItemAccumulator = checkoutSession.getItemAccumulator();
 
-        for (PriceRule priceRule : stockItemPricingRule.getPriceRules())
-        {
-            priceRule.applyPriceRule(stockItem,stockItemUnitPrice,chargeItemAccumulator);
+        for (PriceRule priceRule : stockItemPricingRule.getPriceRules()) {
+            priceRule.applyPriceRule(stockItem, stockItemUnitPrice, chargeItemAccumulator);
         }
 
 

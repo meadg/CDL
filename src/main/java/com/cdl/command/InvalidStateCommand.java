@@ -6,11 +6,12 @@ import com.cdl.application.SessionState;
 import java.util.Arrays;
 import java.util.List;
 
-public class UnknownApplicationCommand implements CheckOutApplicationCommand {
+public class InvalidStateCommand implements CheckOutApplicationCommand {
 
     @Override
     public void executeCommand(CheckOutSession checkOutSession) {
-        checkOutSession.registerUnknownCommand();
+        checkOutSession.registerInvalidCommandForState();
+
     }
 
     @Override
@@ -18,9 +19,9 @@ public class UnknownApplicationCommand implements CheckOutApplicationCommand {
         return false;
     }
 
-
     @Override
     public List<SessionState> validForStates() {
+
         return Arrays.asList(SessionState.values());
     }
 }
