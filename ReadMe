@@ -1,0 +1,25 @@
+
+Application main() is in com.cdl.application.CheckOutApplication
+
+Still a bit rough and could do with a little more validation.
+Prices and pricing rules a loaded via a static initialiser
+
+App uses command pattern to perform check out The available commands are
+
+BeginCheckOut   -start checkout session
+FinishCheckOut  -finish session
+ExitApp         - exit app at any time
+
+And scan an item
+
+ScanItem:<product code> e.g ScanItem:A  Available products as per Kata doc are A,B,C,D
+
+example
+
+BeginCheckOut
+ScanItem:A - outputs price and subtotal
+ScanItem:B
+ScanItem:C
+ScanItem:A
+
+FinishCheckOut  - outputs totals
