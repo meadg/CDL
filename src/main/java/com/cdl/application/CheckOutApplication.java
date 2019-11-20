@@ -4,7 +4,7 @@ import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.command.CheckOutApplicationCommand;
 import com.cdl.command.CheckoutCommandReceiver;
 import com.cdl.command.CommandFactory;
-import com.cdl.command.StockItemChargingHandler;
+import com.cdl.command.scanning.StockItemChargingHandler;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
 import com.cdl.domain.price.UnitPrice;

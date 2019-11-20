@@ -1,7 +1,9 @@
-package com.cdl.command;
+package com.cdl.command.scanning;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.application.SessionState;
+import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.command.CheckoutCommandReceiver;
 
 import java.util.Arrays;
 import java.util.List;

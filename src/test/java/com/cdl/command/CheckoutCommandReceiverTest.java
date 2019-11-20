@@ -2,6 +2,7 @@ package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.application.SessionState;
+import com.cdl.command.scanning.StockItemChargingHandler;
 import com.cdl.domain.StockItem;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

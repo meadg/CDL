@@ -1,5 +1,11 @@
 package com.cdl.command;
 
+import com.cdl.command.scanning.BeginCheckoutCommand;
+import com.cdl.command.scanning.CompleteCheckoutCommand;
+import com.cdl.command.scanning.ScanItemCommand;
+import com.cdl.command.update.AddNewProductCommand;
+import com.cdl.command.update.BeginProductInsertionCommand;
+import com.cdl.command.update.EndProductInsertionCommand;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.Price;
 import com.cdl.domain.price.UnitPrice;

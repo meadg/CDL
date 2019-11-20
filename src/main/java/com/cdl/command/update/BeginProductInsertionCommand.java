@@ -1,21 +1,23 @@
-package com.cdl.command;
+package com.cdl.command.update;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.application.SessionState;
+import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.command.CheckoutCommandReceiver;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class BeginCheckoutCommand implements CheckOutApplicationCommand {
+public class BeginProductInsertionCommand implements CheckOutApplicationCommand {
     private CheckoutCommandReceiver checkoutCommandReceiver;
 
-    public BeginCheckoutCommand(CheckoutCommandReceiver checkoutCommandReceiver) {
+    public BeginProductInsertionCommand(CheckoutCommandReceiver checkoutCommandReceiver) {
         this.checkoutCommandReceiver = checkoutCommandReceiver;
     }
 
     @Override
     public void executeCommand(CheckOutSession checkoutSession) {
-        checkoutCommandReceiver.beginCheckoutSession(checkoutSession);
+        checkoutCommandReceiver.beginProductInsertion(checkoutSession);
 
     }
 

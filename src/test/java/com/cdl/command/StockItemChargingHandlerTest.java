@@ -2,6 +2,7 @@ package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.charging.ChargeItemAccumulator;
+import com.cdl.command.scanning.StockItemChargingHandler;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 import com.cdl.pricing.rules.PriceRule;

@@ -1,6 +1,7 @@
 package com.cdl.command;
 
 import com.cdl.application.CheckOutSession;
+import com.cdl.command.scanning.CompleteCheckoutCommand;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

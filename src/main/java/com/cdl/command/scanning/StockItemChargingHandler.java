@@ -1,4 +1,4 @@
-package com.cdl.command;
+package com.cdl.command.scanning;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.charging.ChargeItemAccumulator;

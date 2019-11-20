@@ -1,7 +1,9 @@
-package com.cdl.command;
+package com.cdl.command.update;
 
 import com.cdl.application.CheckOutSession;
 import com.cdl.application.SessionState;
+import com.cdl.command.CheckOutApplicationCommand;
+import com.cdl.command.CheckoutCommandReceiver;
 import com.cdl.domain.StockItem;
 import com.cdl.domain.price.UnitPrice;
 
