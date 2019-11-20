@@ -18,4 +18,9 @@ public class ScanItemCommand implements CheckOutApplicationCommand {
         checkoutCommandReceiver.createChargeItemsForScannedItem(stockItem,checkOutSession);
 
     }
+
+    @Override
+    public boolean isTerminating() {
+        return false;
+    }
 }

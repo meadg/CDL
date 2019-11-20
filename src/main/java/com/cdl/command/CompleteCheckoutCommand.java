@@ -15,4 +15,8 @@ public class CompleteCheckoutCommand implements CheckOutApplicationCommand {
         checkoutCommandReceiver.completeCheckoutSession(session);
 
     }
+    @Override
+    public boolean isTerminating() {
+        return false;
+    }
 }

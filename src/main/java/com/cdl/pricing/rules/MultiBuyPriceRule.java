@@ -8,7 +8,7 @@ import com.cdl.domain.price.UnitPrice;
 
 public class MultiBuyPriceRule implements PriceRule {
 
-    public static final String MULTI_BUY_DISCOUNT = "multi buy discount";
+    public static final String MULTI_BUY_DISCOUNT = "Multibuy Discount";
     private Integer numberRequired;
     private Price multiplePrice;
 

@@ -34,10 +34,13 @@ public class CheckOutSession {
 
     public void createScannedChargeItemOutput() {
         chargeItemAccumulator.addNewItemsToReceiptOutputAndFlagAsProcessed(scanLogger);
-
     }
     public void beginCheckOutSession() {
         scanLogger.startingCheckout();
+    }
+
+    public void registerUnknownCommand() {
+        scanLogger.unknownCommand();
     }
 
     @Override

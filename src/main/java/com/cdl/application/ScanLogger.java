@@ -9,4 +9,6 @@ public interface ScanLogger {
     void outputItemAndSubtotal(CheckOutItem checkOutItem);
     void outputFinalCheckOutTotals(int numberOfItems, int total);
     void startingCheckout();
+
+    void unknownCommand();
 }

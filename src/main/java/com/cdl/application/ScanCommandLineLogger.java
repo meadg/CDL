@@ -13,6 +13,7 @@ public class ScanCommandLineLogger implements ScanLogger {
     public static final String SUBITEM_OUTPUT = "Product Code:%s Description:%s Value:%s Subtotal:%s";
     public static final String TOTAL_AMOUNT = "Number of Items:%s Total Amount:%s";
     private static final String STARTINGITEMCHECKOUT = "Starting Check Out";
+    private static final String UNKNOWN_COMMAND = "Unknown command please try again";
     private static NumberFormat GBP = NumberFormat.getCurrencyInstance(Locale.UK);
 
     @Override
@@ -37,6 +38,11 @@ public class ScanCommandLineLogger implements ScanLogger {
     @Override
     public void startingCheckout() {
         System.out.println(STARTINGITEMCHECKOUT);
+    }
+
+    @Override
+    public void unknownCommand() {
+        System.out.println(UNKNOWN_COMMAND);
     }
 
 

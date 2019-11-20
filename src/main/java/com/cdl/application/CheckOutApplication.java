@@ -1,11 +1,8 @@
 package com.cdl.application;
 
 import com.cdl.charging.ChargeItemAccumulator;
-import com.cdl.command.BeginCheckoutCommand;
 import com.cdl.command.CheckOutApplicationCommand;
 import com.cdl.command.CheckoutCommandReceiver;
-import com.cdl.command.CompleteCheckoutCommand;
-import com.cdl.command.ScanItemCommand;
 import com.cdl.command.StockItemChargingHandler;
 import com.cdl.command.StockItemPricingRule;
 import com.cdl.command.StockItemPricingRule.StockItemPricingRuleBuilder;
@@ -28,10 +25,11 @@ public class CheckOutApplication {
 
 
     private static Scanner scanner = new Scanner(new InputStreamReader(System.in));
-    private CheckoutCommandReceiver checkoutCommandReceiver;
+    private CheckoutCommandReceiver commandReceiver;
+    private CommandFactory commandFactory;
 
-    public CheckOutApplication(CheckoutCommandReceiver checkoutCommandReceiver) {
-        this.checkoutCommandReceiver = checkoutCommandReceiver;
+    public CheckOutApplication(CommandFactory commandFactory) {
+        this.commandFactory = commandFactory;
     }
 
     public static void main(String[] args) {
@@ -42,31 +40,20 @@ public class CheckOutApplication {
         System.out.println("Please enter your command: ");
 
         String command = scanner.nextLine();
+        CheckOutApplicationCommand appCommand = checkOutApplication.createCommand(command);
 
-        do {
-            CheckOutApplicationCommand appCommand = checkOutApplication.createCommand(command);
+        while (!appCommand.isTerminating()) {
             checkOutSession.handleApplicationCommand(appCommand);
             command = scanner.nextLine();
+            appCommand = checkOutApplication.createCommand(command);
 
-        } while (!command.equals("Exit"));
-
-
-
+        }
     }
 
     private CheckOutApplicationCommand createCommand(String command) {
-
-        if(command.startsWith("BeginCheckOut")){
-            return new BeginCheckoutCommand(checkoutCommandReceiver);
-        }else if(command.startsWith("FinishCheckOut")){
-            return new CompleteCheckoutCommand(checkoutCommandReceiver);
-        }else if (command.startsWith("ScanItem:")){
-            int colonPosition = command.indexOf(":");
-            String productCode = command.substring(colonPosition+1).trim();
-            return new ScanItemCommand(checkoutCommandReceiver,new StockItem(productCode));
-        }
-        return null;
+        return commandFactory.createCommand(command);
     }
+
 
     private static CheckOutApplication createCheckOutApplication() {
 
@@ -97,7 +84,8 @@ public class CheckOutApplication {
 
         StockItemChargingHandler stockItemChargingHandler = new StockItemChargingHandler(stockItemPricingRules);
         CheckoutCommandReceiver checkoutCommandReceiver = new CheckoutCommandReceiver(stockItemChargingHandler);
-        return new CheckOutApplication(checkoutCommandReceiver);
+        CommandFactory commandFactory = new CommandFactory(checkoutCommandReceiver);
+        return new CheckOutApplication(commandFactory);
     }
 
     private static List<PriceRule> priceRules(PriceRule... priceRules){
