@@ -3,6 +3,7 @@ package com.cdl.logging;
 import com.cdl.application.SessionState;
 import com.cdl.domain.CheckOutItem;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.price.UnitPrice;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -18,6 +19,9 @@ public class ScanCommandLineLogger implements ScanLogger {
     private static final String UNKNOWN_COMMAND = "Unknown command Please try again";
     private static final String INVALID_STATE_COMMAND = "Command is not valid for current session state which is: '%s' Please try again";
     private static final String PRODUCT_NOT_FOUND = "Product: %s not found Please try again";
+    private static final String START_PRODUCT_UPDATE = "Starting Product Update";
+    public static final String NEW_PRODUCT_ADDED = "New Product Id:%s Unit Price:%s Added successfully";
+    public static final String END_OF_PRODUCT_UPDATE_SESSION = "End of Product Update Session";
     ;
     private static NumberFormat GBP = NumberFormat.getCurrencyInstance(Locale.UK);
 
@@ -58,6 +62,21 @@ public class ScanCommandLineLogger implements ScanLogger {
     @Override
     public void registerInvalidProduct(StockItem stockItem) {
         System.out.println(format(PRODUCT_NOT_FOUND, stockItem.getStockItemId()));
+    }
+
+    @Override
+    public void beginningProductUpdate() {
+        System.out.println(START_PRODUCT_UPDATE);
+    }
+
+    @Override
+    public void registerNewProduct(StockItem stockItem, UnitPrice price) {
+        System.out.println(format(NEW_PRODUCT_ADDED,stockItem.getStockItemId(),price.getPrice().getValue()));
+    }
+
+    @Override
+    public void endProductUpdateSession() {
+        System.out.println(END_OF_PRODUCT_UPDATE_SESSION);
     }
 
 

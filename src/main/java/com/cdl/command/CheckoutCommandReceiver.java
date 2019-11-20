@@ -3,6 +3,7 @@ package com.cdl.command;
 import com.cdl.application.CheckOutSession;
 import com.cdl.application.SessionState;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.price.UnitPrice;
 
 public class CheckoutCommandReceiver {
 
@@ -33,5 +34,20 @@ public class CheckoutCommandReceiver {
         } else {
             checkOutSession.registerInvalidProduct(stockItem);
         }
+    }
+
+    public void insertNewProduct(StockItem stockItem, UnitPrice price,CheckOutSession checkoutSession) {
+        stockItemChargingHandler.addNewProduct(stockItem,price);
+        checkoutSession.registerNewProduct(stockItem,price);
+    }
+
+    public void beginProductInsertion(CheckOutSession checkoutSession) {
+        checkoutSession.setState(SessionState.UPDATING);
+        checkoutSession.startProductInsertion();
+    }
+
+    public void endProductInsertion(CheckOutSession checkoutSession) {
+        checkoutSession.setState(SessionState.AVAILABLE);
+        checkoutSession.endProductUpdate();
     }
 }

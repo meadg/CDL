@@ -3,6 +3,7 @@ package com.cdl.application;
 import com.cdl.charging.ChargeItemAccumulator;
 import com.cdl.command.CheckOutApplicationCommand;
 import com.cdl.domain.StockItem;
+import com.cdl.domain.price.UnitPrice;
 import com.cdl.logging.ScanLogger;
 
 public class CheckOutSession {
@@ -53,6 +54,18 @@ public class CheckOutSession {
 
     public void registerInvalidProduct(StockItem stockItem) {
         scanLogger.registerInvalidProduct(stockItem);
+    }
+
+
+    public void startProductInsertion() {
+        scanLogger.beginningProductUpdate();
+    }
+    public void registerNewProduct(StockItem stockItem, UnitPrice price) {
+        scanLogger.registerNewProduct(stockItem,price);
+    }
+
+    public void endProductUpdate() {
+        scanLogger.endProductUpdateSession();
     }
 
 

@@ -4,6 +4,8 @@ Application main() is in com.cdl.application.CheckOutApplication
 Still a bit rough and could do with a little more validation and tidy up of output
 Prices and pricing rules a loaded via a static initialiser
 
+SCANNING ITEMS
+=================
 App uses command pattern to perform check out The available commands are
 
 BeginCheckOut   -start checkout session
@@ -23,3 +25,29 @@ ScanItem:C
 ScanItem:A
 
 FinishCheckOut  - outputs totals
+
+PRODUCT INSERTION
+=================
+There is also a basic product insert option, which inserts into the in memory price rules
+Please note this is very basic and there is no validation for a product already there yet as i didn't have time :)
+
+The commands for this are
+
+StartUpdate  - start update session
+
+InsertProduct:ProductId:<StockItemId>:UnitPrice:<UnitPrice>
+
+e.g  InsertProduct:ProductId:F:UnitPrice:12
+
+EndUpdate - end update session
+
+e.g
+StartUpdate
+InsertProduct:ProductId:F:UnitPrice:12
+EndUpdate
+
+You should then be able to scan new product F via
+
+BeginCheckOut
+ScanItem:F
+FinishCheckOut
