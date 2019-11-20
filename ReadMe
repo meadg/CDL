@@ -1,7 +1,7 @@
 
 Application main() is in com.cdl.application.CheckOutApplication
 
-Still a bit rough and could do with a little more validation.
+Still a bit rough and could do with a little more validation and tidy up of output
 Prices and pricing rules a loaded via a static initialiser
 
 App uses command pattern to perform check out The available commands are
